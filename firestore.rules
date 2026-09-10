@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidModule(data) {
+      return data.keys().hasAll(['id', 'userId', 'kelas', 'semester', 'jurusan', 'topic', 'status', 'createdAt', 'updatedAt'])
+        && data.id is string
+        && data.userId is string
+        && data.kelas is string
+        && data.semester is string
+        && data.jurusan is string
+        && data.topic is string
+        && data.status is string
+        && (data.status == 'draft' || data.status == 'final')
+        // Optional fields check type if they exist
+        && (!('modulAjar' in data) || data.modulAjar is map || data.modulAjar == null)
+        && (!('lkpd' in data) || data.lkpd is map || data.lkpd == null)
+        && (!('media' in data) || data.media is map || data.media == null)
+        && (!('asesmenInstrumen' in data) || data.asesmenInstrumen is map || data.asesmenInstrumen == null);
+    }
+
+    match /modules/{moduleId} {
+      allow get: if isSignedIn() && isValidId(moduleId) && existing().userId == request.auth.uid;
+      
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+
+      allow create: if isSignedIn() 
+        && isValidId(moduleId) 
+        && isValidModule(incoming())
+        && incoming().keys().size() <= 13
+        && incoming().userId == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isSignedIn()
+        && isValidId(moduleId)
+        && existing().userId == request.auth.uid
+        && isValidModule(incoming())
+        && incoming().keys().size() <= 13
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time;
+        
+      allow delete: if isSignedIn() && isValidId(moduleId) && existing().userId == request.auth.uid;
+    }
+  }
+}

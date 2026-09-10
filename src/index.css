@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #FDFBF7;
+  --color-brand-primary: #1E4D4D;
+  --color-brand-accent: #E87A5D;
+  --color-brand-text: #2D3436;
+}

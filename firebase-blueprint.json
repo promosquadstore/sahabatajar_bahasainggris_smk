@@ -1,0 +1,31 @@
+{
+  "entities": {
+    "module": {
+      "title": "Module",
+      "description": "Represents a generated learning module package",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "kelas": { "type": "string" },
+        "semester": { "type": "string" },
+        "jurusan": { "type": "string" },
+        "topic": { "type": "string" },
+        "modulAjar": { "type": "object" },
+        "lkpd": { "type": "object" },
+        "media": { "type": "object" },
+        "asesmenInstrumen": { "type": "object" },
+        "status": { "type": "string", "enum": ["draft", "final"] },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "kelas", "semester", "jurusan", "topic", "status", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "modules/{moduleId}": {
+      "schema": { "$ref": "#/entities/module" },
+      "description": "Stores all the generated module packages for users."
+    }
+  }
+}

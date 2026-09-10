@@ -1,0 +1,6 @@
+{
+  "name": "Sahabat Ajar Bahasa Inggris",
+  "description": "Agen AI untuk guru SMK, menyusun Perangkat Pembelajaran Interaktif (Modul Ajar, LKPD, Media) mapel Bahasa Inggris yang selaras dengan Prota & Prosem.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
