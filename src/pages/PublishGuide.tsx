@@ -186,6 +186,97 @@ export default function PublishGuide() {
                 </div>
               </div>
             </div>
+
+            {/* Interactive README.md Template Card */}
+            <div className="bg-slate-900 text-slate-200 rounded-3xl p-6 border border-slate-800 shadow-lg mt-8 relative overflow-hidden">
+              <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-64 h-64 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2 bg-indigo-500/15 text-indigo-400 rounded-xl">
+                    <FileText size={18} />
+                  </div>
+                  <div>
+                    <h3 className="font-extrabold text-slate-100 text-base">Contoh File README.md untuk GitHub</h3>
+                    <p className="text-xs text-slate-400">Salin dan tempel konten di bawah ini saat membuat berkas README.md baru di repositori GitHub Anda.</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => copyToClipboard(`# 📂 Portofolio Administrasi & Perangkat Pembelajaran Bahasa Inggris SMK (Merdeka Belajar)
+
+Selamat datang di repositori portofolio perangkat pembelajaran **Bahasa Inggris SMK** interaktif. Dokumen dan materi di dalam repositori ini dirancang khusus untuk menyelaraskan kurikulum vokasi dengan dunia usaha dan dunia industri (DUDI).
+
+Seluruh isi administrasi ini disusun secara generatif dan dikonseptualisasikan menggunakan platform cerdas **SahabatAjar SMK**.
+
+---
+
+## 📌 Keselarasan Regulasi & Acuan Kurikulum
+* **Regulasi Utama**: Selaras dengan **BSKAP Kemendikbudristek No. 032/H/KR/2024** mengenai Capaian Pembelajaran (CP) terbaru.
+* **Fokus Pembelajaran**: Berbasis Pembelajaran Proyek (**Project-Based Learning / PjBL**) untuk menyiapkan kemandirian vokasional siswa SMK di era industri modern.
+
+---
+
+## 🛠️ Komponen Perangkat Pembelajaran yang Tersedia
+Repositori ini berisi berkas-berkas penting administrasi guru siap pakai:
+1. **Rencana Pekan Efektif (RPE)**: Perhitungan kalender akademik semester aktif.
+2. **Modul Ajar Pembelajaran (MA)**: Desain instruksional terintegrasi dengan kosa kata teknis industri (*vocationally-contextualized vocabulary*).
+3. **Media Simulasi Interaktif**: Konseptualisasi media visual/simulasi interaktif untuk menunjang kegiatan unjuk kerja siswa.
+4. **Instrumen Asesmen & Rubrik Penilaian**: Format asesmen diagnostik, formatif, dan sumatif yang mengukur keterampilan praktis (unjuk kerja).
+
+---
+
+## 💻 Cara Menggunakan Perangkat Pembelajaran Ini
+
+### A. Untuk Rekan Guru & Pengawas Sekolah:
+* Anda dapat meninjau langsung keselarasan CP-TP dan modul ajar dengan menelusuri file \`.docx\` atau membuka tautan situs web interaktif kami.
+* Klik tombol **Code** > **Download ZIP** untuk mengunduh seluruh draf Word agar dapat diedit di komputer Anda masing-masing.
+
+### B. Untuk Peserta Didik:
+* Gunakan draf modul dan instrumen asesmen unjuk kerja mandiri sebagai panduan pembelajaran kelompok/proyek vokasi Anda.
+
+---
+
+*Disusun dengan penuh dedikasi oleh Guru Hebat Indonesia menggunakan platform teknologi **SahabatAjar SMK**.*`, 'readme_tmpl')}
+                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl transition-all cursor-pointer shadow-sm shrink-0"
+                >
+                  {copiedText === 'readme_tmpl' ? (
+                    <>
+                      <Check size={14} className="text-emerald-300 animate-pulse" />
+                      <span>Berhasil Disalin!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} />
+                      <span>Salin Konten README.md</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Readme Content Preview */}
+              <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-4 font-mono text-[11px] sm:text-xs text-slate-300 leading-relaxed overflow-x-auto max-h-72 select-all">
+                <span className="text-slate-500 font-bold"># 📂 Portofolio Administrasi & Perangkat Pembelajaran Bahasa Inggris SMK (Merdeka Belajar)</span><br/><br/>
+                Selamat datang di repositori portofolio perangkat pembelajaran **Bahasa Inggris SMK** interaktif. Dokumen dan materi di dalam repositori ini dirancang khusus untuk menyelaraskan kurikulum vokasi dengan dunia usaha dan dunia industri (DUDI).<br/><br/>
+                Seluruh isi administrasi ini disusun secara generatif dan dikonseptualisasikan menggunakan platform cerdas **SahabatAjar SMK**.<br/><br/>
+                <span className="text-slate-500">---</span><br/><br/>
+                <span className="text-slate-500 font-bold">## 📌 Keselarasan Regulasi & Acuan Kurikulum</span><br/>
+                * **Regulasi Utama**: Selaras dengan **BSKAP Kemendikbudristek No. 032/H/KR/2024** mengenai Capaian Pembelajaran (CP) terbaru.<br/>
+                * **Fokus Pembelajaran**: Berbasis Pembelajaran Proyek (**Project-Based Learning / PjBL**) untuk menyiapkan kemandirian vokasional siswa SMK di era industri modern.<br/><br/>
+                <span className="text-slate-500">---</span><br/><br/>
+                <span className="text-slate-500 font-bold">## 🛠️ Komponen Perangkat Pembelajaran yang Tersedia</span><br/>
+                Repositori ini berisi berkas-berkas penting administrasi guru siap pakai:<br/>
+                1. **Rencana Pekan Efektif (RPE)**: Perhitungan kalender akademik semester aktif.<br/>
+                2. **Modul Ajar Pembelajaran (MA)**: Desain instruksional terintegrasi dengan kosa kata teknis industri (*vocationally-contextualized vocabulary*).<br/>
+                3. **Media Simulasi Interaktif**: Konseptualisasi media visual/simulasi interaktif untuk menunjang kegiatan unjuk kerja siswa.<br/>
+                4. **Instrumen Asesmen & Rubrik Penilaian**: Format asesmen diagnostik, formatif, dan sumatif yang mengukur keterampilan praktis.<br/><br/>
+                <span className="text-slate-500">---</span><br/><br/>
+                <span className="text-slate-500 font-bold">## 💻 Cara Menggunakan Perangkat Pembelajaran Ini</span><br/><br/>
+                <span className="text-slate-500 font-bold">### A. Untuk Rekan Guru & Pengawas Sekolah:</span><br/>
+                * Anda dapat meninjau langsung keselarasan CP-TP dan modul ajar dengan menelusuri file `.docx` atau membuka tautan situs web interaktif kami.<br/>
+                * Klik tombol **Code** &gt; **Download ZIP** untuk mengunduh seluruh draf Word agar dapat diedit di komputer Anda masing-masing.<br/><br/>
+                <span className="text-slate-500 font-bold">### B. Untuk Peserta Didik:</span><br/>
+                * Gunakan draf modul dan instrumen asesmen unjuk kerja mandiri sebagai panduan pembelajaran kelompok/proyek vokasi Anda.
+              </div>
+            </div>
           </motion.div>
         ) : (
           <motion.div
